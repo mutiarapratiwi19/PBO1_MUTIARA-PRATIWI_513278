@@ -1,0 +1,22 @@
+def cek_prima(angka):
+    if angka <= 1:
+        return False
+    elif angka <= 3:
+        return True
+    elif angka % 2 == 0 or angka % 3 == 0:
+        return False
+    i = 5
+    while i * i <= angka:
+        if angka % i == 0 or angka % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+# Meminta input angka dari pengguna
+angka = int(input("Masukkan angka: "))
+
+# Memeriksa apakah angka adalah angka prima atau bukan
+if cek_prima(angka):
+    print("Angka {} adalah angka prima.".format(angka))
+else:
+    print("Angka {} bukan angka prima.".format(angka))
