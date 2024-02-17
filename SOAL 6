@@ -1,0 +1,20 @@
+def fibonacci(n):
+    fib = [0, 1]  # Deret Fibonacci dimulai dari 0 dan 1
+    for i in range(2, n + 10):  # Menghasilkan 10 angka deret Fibonacci setelah n
+        fib.append(fib[i - 1] + fib[i - 2])
+    return fib[n:n+10]
+
+# Meminta input dari pengguna
+while True:
+    try:
+        angka = int(input("Masukkan angka antara 0-10: "))
+        if 0 <= angka <= 10:
+            break
+        else:
+            print("Angka harus antara 0-10. Coba lagi.")
+    except ValueError:
+        print("Input harus berupa bilangan bulat. Coba lagi.")
+
+# Menampilkan 10 angka deret Fibonacci dimulai dari angka yang diinput
+hasil = fibonacci(angka)
+print("Deret Fibonacci dimulai dari angka", angka, "adalah:", hasil)
