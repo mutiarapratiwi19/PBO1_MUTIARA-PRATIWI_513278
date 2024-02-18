@@ -1,40 +1,37 @@
 def hitung_nilai_akhir(tugas, laporan, ujian):
-    # Menghitung nilai akhir dengan bobot nilai tugas 25%, laporan 25%, dan ujian 50%
-    nilai_akhir = 0.25 * tugas + 0.25 * laporan + 0.5 * ujian
-    
-    # Menentukan nilai huruf berdasarkan nilai akhir
-    if 80 <= nilai_akhir <= 100:
-        return 'A'
-    elif 70 <= nilai_akhir < 80:
-        return 'B'
-    elif 60 <= nilai_akhir < 70:
-        return 'C'
-    elif 50 <= nilai_akhir < 60:
-        return 'D'
+    rata_rata = (tugas + laporan) / 2
+    if rata_rata < 40:
+        return 'K'
     else:
-        return 'E'
+        nilai_akhir = 0.25 * tugas + 0.25 * laporan + 0.5 * ujian
+        if 80 <= nilai_akhir <= 100:
+            return 'A'
+        elif 70 <= nilai_akhir < 80:
+            return 'B'
+        elif 60 <= nilai_akhir < 70:
+            return 'C'
+        elif 50 <= nilai_akhir < 60:
+            return 'D'
+        else:
+            return 'E'
 
-# Meminta input NIU (6 digit string)
-NIU = input("Masukkan NIU (6 digit string): ")
+def main():
+    try:
+        niu = int(input("Masukkan NIU (6 digit integer): "))
+        tugas = float(input("Masukkan nilai tugas: "))
+        laporan = float(input("Masukkan nilai laporan: "))
+        ujian = float(input("Masukkan nilai ujian: "))
+        rata_rata = (tugas + laporan) / 2
 
-# Meminta input nilai tugas
-nilai_tugas = float(input("Masukkan nilai tugas: "))
+        if rata_rata < 40:
+            print("Nilai akhir: K")
+            return
+        
+        nilai_akhir = hitung_nilai_akhir(tugas, laporan, ujian)
+        print(f"Nilai akhir: {nilai_akhir}")
 
-# Meminta input nilai laporan
-nilai_laporan = float(input("Masukkan nilai laporan: "))
+    except ValueError:
+        print("Masukan tidak valid. Pastikan NIU berupa 6 digit integer dan nilai-nilai merupakan angka.")
 
-# Menghitung rata-rata nilai tugas dan laporan
-rata_rata_tugas_laporan = (nilai_tugas + nilai_laporan) / 2
-
-# Jika rata-rata kurang dari 40, maka siswa langsung mendapat nilai K
-if rata_rata_tugas_laporan < 40:
-    print("Nilai akhir: K")
-else:
-    # Meminta input nilai ujian
-    nilai_ujian = float(input("Masukkan nilai ujian: "))
-    
-    # Menghitung nilai akhir
-    nilai_akhir = hitung_nilai_akhir(nilai_tugas, nilai_laporan, nilai_ujian)
-    
-    # Menampilkan output nilai akhir huruf
-    print("Nilai akhir: {}".format(nilai_akhir))
+if __name__ == "__main__":
+    main()
